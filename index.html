@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transport Department - Vehicle HSRP Solutions</title>
+  <meta name="description" content="Official vehicle transport solutions and HSRP booking services." />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand: #0d6efd;
+      --brand2: #0aa2c0;
+      --ink: #0b1220;
+      --muted: #475569;
+      --soft: #f5f7fb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 10px 28px rgba(2, 6, 23, .08);
+      --radius: 18px;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 72px;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* ================= NAV ================= */
+    .nav-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1050;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: .04em;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 22px rgba(13, 110, 253, .25);
+      flex: 0 0 auto;
+    }
+
+    .navbar-brand {
+      font-weight: 900;
+      letter-spacing: .02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 700;
+      color: var(--ink) !important;
+    }
+
+    .pill-cta {
+      border-radius: 999px;
+      padding: .55rem 1rem;
+      font-weight: 900;
+    }
+
+    .section {
+      padding: 32px 0;
+    }
+
+    .section-title {
+      font-weight: 950;
+      letter-spacing: -.01em;
+      margin: 0 0 8px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-weight: 650;
+      margin: 0 0 24px;
+    }
+
+    .card-soft {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+
+    .icon-bubble {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(13, 110, 253, .12), rgba(10, 162, 192, .12));
+      border: 1px solid rgba(13, 110, 253, .18);
+      font-weight: 950;
+      color: var(--ink);
+    }
+
+    .service-title {
+      font-weight: 900;
+      margin: 12px 0 6px;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-weight: 650;
+      margin: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #fff;
+      font-weight: 950;
+      box-shadow: 0 10px 20px rgba(13, 110, 253, .25);
+      flex: 0 0 auto;
+    }
+
+    .quote {
+      background: linear-gradient(90deg, rgba(13, 110, 253, .10), rgba(10, 162, 192, .10));
+      border: 1px solid rgba(13, 110, 253, .15);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .quote h4 {
+      margin: 0 0 4px;
+      font-weight: 950;
+    }
+
+    .quote p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 24px;
+      background: #0b1220;
+      color: #fff;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .small-muted {
+      color: rgba(255, 255, 255, .75);
+      font-weight: 650;
+    }
+
+    .service-strip {
+      background: linear-gradient(90deg, #0d6efd, #0aa2c0);
+      border-radius: 22px;
+      padding: 28px 22px;
+      box-shadow: 0 18px 45px rgba(2, 6, 23, .10);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .service-tile {
+      border-radius: 18px;
+      padding: 26px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(2, 6, 23, .08);
+      box-shadow: 0 12px 28px rgba(2, 6, 23, .08);
+    }
+
+    .service-tile.light {
+      background: #fde68a;
+    }
+
+    .service-tile.dark {
+      background: #334b8a;
+      color: #fff;
+      border-color: rgba(255, 255, 255, .12);
+    }
+
+    .service-tile h3 {
+      margin: 0 0 14px;
+      font-weight: 950;
+      letter-spacing: -0.01em;
+      font-size: 22px;
+    }
+
+    .service-tile .btn {
+      width: fit-content;
+      border-radius: 12px;
+      font-weight: 900;
+      padding: 10px 14px;
+    }
+
+    .flag-section {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 10px;
+    }
+
+    .flag-section img {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      border-radius: 2px;
+      box-shadow: 0 18px 40px rgba(2, 6, 23, .15);
+      object-fit: cover;
+    }
+
+    @media(max-width:576px) {
+      .flag-section img {
+        height: 90px;
+      }
+
+      .quote {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    .hr-soft {
+      border-top: 1px solid var(--border);
+      opacity: 1;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg navbar-light nav-glass">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-badge">IN</span>
+        <span>Transport Department</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary pill-cta" href="enquiry.html">Get a Quote</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <section class="flag-section" id="services">
+    <img src="images/advertisement_Test.jpg" alt="book my hsrp" title="book my hsrp">
+  </section>
+
+  <div class="container mt-4">
+    <div class="service-strip">
+      <div class="row g-3">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-tile light">
+            <h3>Two Wheeler Number Plate</h3>
+            <a href="enquiry.html" class="btn btn-outline-dark">Book →</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-tile dark">
+            <h3>Replacement / Retain / Transfer</h3>
+            <a href="enquiry.html" class="btn btn-outline-light">Book →</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-tile light">
+            <h3>Four Wheeler Number Plate</h3>
+            <a href="enquiry.html" class="btn btn-outline-dark">Book →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="section" id="how">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-sub">Simple steps. No confusion. We keep you updated.</p>
+
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h6 class="fw-bold mb-1">Share details</h6>
+                <p class="mini">Pickup, drop, date and item type (home/office/bike/car).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h6 class="fw-bold mb-1">Get best quote</h6>
+                <p class="mini">We confirm vehicle, packing requirement and pricing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h6 class="fw-bold mb-1">Pickup & delivery</h6>
+                <p class="mini">Our team packs, loads and delivers on time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote mt-4">
+        <div>
+          <h4>Need a quick call back?</h4>
+          <p>Click below and share your pickup/drop details. We’ll respond fast.</p>
+        </div>
+        <a class="btn btn-dark fw-bold px-4 py-2" style="border-radius:12px;" href="enquiry.html">Book Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DETAILS ================= -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <h1 class="section-title">Book My Hsrp</h1>
+      <p class="section-sub">Strong materials, safe handling, and clean packing—so your items reach without damage.</p>
+
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-bubble">📦</div>
+              <div>
+                <h5 class="service-title mb-0">Quality packing materials</h5>
+                <p class="mini">5-ply cartons, bubble wrap, foam, stretch film, and corrugated sheets.</p>
+              </div>
+            </div>
+            <hr class="hr-soft">
+            <ul class="mini" style="padding-left:18px;">
+              <li>Separate packing for fragile items</li>
+              <li>Moisture & dust protection</li>
+              <li>Labeling for easy unloading</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-bubble">🛋️</div>
+              <div>
+                <h5 class="service-title mb-0">Your product & appliances</h5>
+                <p class="mini">Dismantle, wrap, and secure your large items for transport.</p>
+              </div>
+            </div>
+            <hr class="hr-soft">
+            <ul class="mini" style="padding-left:18px;">
+              <li>Corner guards & edge protection</li>
+              <li>Anti-scratch wrapping</li>
+              <li>Safe loading with straps</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card-soft">
+            <div class="d-flex align-items-center gap-2">
+              <div class="icon-bubble">✅</div>
+              <div>
+                <h5 class="service-title mb-0">Damage-safe process</h5>
+                <p class="mini">Step-by-step packing with checks before dispatch & delivery.</p>
+              </div>
+            </div>
+            <hr class="hr-soft">
+            <ul class="mini" style="padding-left:18px;">
+              <li>Item checklist & verification</li>
+              <li>Sealed cartons for security</li>
+              <li>Unpacking support on request</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote mt-4">
+        <div>
+          <h4>Want delivery only?</h4>
+          <p>Share your item list and delivery location. We’ll arrange unpacking at your place.</p>
+        </div>
+        <a class="btn btn-dark fw-bold px-4 py-2" style="border-radius:12px;" href="enquiry.html">Get Packing Quote
+          →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" id="contact">
+    <div class="container py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <div class="d-flex align-items-center gap-2">
+            <span class="brand-badge">PM</span>
+            <div>
+              <div class="fw-bold">Transport Department</div>
+              <div class="small-muted">Serving • Safe & reliable relocation</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 text-lg-end">
+          <div class="d-flex flex-wrap gap-3 justify-content-lg-end">
+            <a href="#services">Services</a>
+            <a href="#how">How it works</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+            <a href="enquiry.html" class="fw-bold">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border-top:1px solid rgba(255,255,255,.12);" class="my-3" />
+
+      <div class="d-flex flex-wrap justify-content-between gap-2 small-muted">
+        <span>©️ 2026 Transport Department. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

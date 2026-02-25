@@ -245,7 +245,7 @@
 
   <footer class="footer">
     <div class="container text-center">
-      <small>&copy; 2026. All Rights Reserved.</small>
+      <small>© 2026. All Rights Reserved.</small>
     </div>
   </footer>
 
@@ -255,29 +255,27 @@
     document.getElementById('hsrpForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const vType = document.getElementById('vType').value;
-      const appType = document.getElementById('appType').value;
+      const vehicleType = document.getElementById('vType').value;
+      const appType     = document.getElementById('appType').value;
 
-      let pType = vType; 
+      let finalType = vehicleType;
+
       if (appType === 'Replacement') {
-        pType = 'Replacement';
+        finalType = 'Replacement';
       }
 
-      // DEBUG
-      console.log('=== ENQUIRY FORM SUBMIT ===');
-      console.log('Vehicle Type:', vType);
-      console.log('App Type:', appType);
-      console.log('Final pType:', pType);
-      console.log('Redirecting to:', 'payment.html?type=' + encodeURIComponent(pType));
-      
-      // Show alert to confirm
-      alert('Sending type: ' + pType);
+      // ─── Debugging (visible in F12 → Console) ───
+      console.log('Vehicle Type:', vehicleType);
+      console.log('Application Type:', appType);
+      console.log('Final type sent:', finalType);
+      console.log('Redirect URL: payment.html?type=' + encodeURIComponent(finalType));
 
-      // Redirect with cache busting
-      const timestamp = new Date().getTime();
-      window.location.href = 'payment.html?type=' + encodeURIComponent(pType) + '&v=' + timestamp;
+      // Add timestamp to fight caching
+      const ts = new Date().getTime();
+
+      window.location.href = 'payment.html?type=' + encodeURIComponent(finalType) + '&_=' + ts;
     });
   </script>
-</body>
 
+</body>
 </html>

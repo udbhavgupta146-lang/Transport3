@@ -250,10 +250,32 @@
             'Replacement': { img: 'images/1299.jpeg', price: '₹ 1299.00' }
         };
 
+        // DEBUGGING - Open console (F12) to see these
+        console.log('=== PAYMENT PAGE DEBUG ===');
+        console.log('1. Full URL:', window.location.href);
+        console.log('2. Type parameter received:', type);
+        console.log('3. Config has this key?', type in config);
+        console.log('4. All config keys:', Object.keys(config));
+
         const settings = config[type] || config['Two Wheeler'];
+
+        console.log('5. Settings selected:', settings);
+        console.log('6. Image path to load:', settings.img);
+        console.log('=== END DEBUG ===');
+
         qrImg.src = settings.img;
         priceText.innerText = settings.price;
         vehicleTypeText.innerText = type === 'Replacement' ? 'Replacement / Retain / Transfer' : type;
+
+        // Check if image loads
+        qrImg.onload = function () {
+            console.log('✅ QR Image loaded successfully:', settings.img);
+        };
+
+        qrImg.onerror = function () {
+            console.error('❌ QR Image FAILED to load:', settings.img);
+            alert('Image file not found at: ' + settings.img + '\n\nPlease check if the file exists!');
+        };
 
         function downloadQR() {
             const link = document.createElement('a');
@@ -266,6 +288,4 @@
     </script>
 </body>
 
-
 </html>
-

@@ -272,6 +272,34 @@
       window.location.href = 'payment.html?type=' + encodeURIComponent(pType);
     });
   </script>
+
+  <script>
+    // Clear cache on page load
+    if (performance.navigation.type === 1) {
+        console.log('Page was refreshed - cache cleared');
+    }
+    
+    document.getElementById('hsrpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const vType = document.getElementById('vType').value;
+      const appType = document.getElementById('appType').value;
+
+      let pType = vType; // Default to vehicle type
+      if (appType === 'Replacement') {
+        pType = 'Replacement';
+      }
+
+      // DEBUG - Check console
+      console.log('Selected Vehicle Type:', vType);
+      console.log('Selected App Type:', appType);
+      console.log('Final pType being sent:', pType);
+
+      // Add timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      window.location.href = 'payment.html?type=' + encodeURIComponent(pType) + '&v=' + timestamp;
+    });
+</script>
 </body>
 
 </html>

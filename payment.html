@@ -210,7 +210,7 @@
                 <div class="qr-section">
                     <p class="fw-bold mb-2">Payment QR Code</p>
                     <div class="qr-frame">
-                        <img id="qrImg" src="images/1099.jpeg" alt="Payment QR">
+                        <img id="qrImg" src="images/1099.jpg.jpeg" alt="Payment QR">
                     </div>
                     <a href="#" class="btn-download" onclick="downloadQR()">Save QR Code & Download</a>
                 </div>
@@ -243,38 +243,44 @@
         const priceText = document.getElementById('priceText');
         const vehicleTypeText = document.getElementById('vehicleTypeText');
 
-        // Mapping exactly as requested
+        // Updated config with ALL vehicle types
         const config = {
-            'Two Wheeler': { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Four Wheeler': { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Replacement': { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
+            'Two Wheeler':    { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Four Wheeler':   { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Three Wheeler':  { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
+            'Heavy Wheeler':  { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'New Wheeler':    { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Replacement':    { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
         };
 
-        // DEBUGGING - Open console (F12) to see these
+        // DEBUGGING - Open F12 console to see what happens
         console.log('=== PAYMENT PAGE DEBUG ===');
         console.log('1. Full URL:', window.location.href);
-        console.log('2. Type parameter received:', type);
+        console.log('2. Type received:', type);
         console.log('3. Config has this key?', type in config);
         console.log('4. All config keys:', Object.keys(config));
 
         const settings = config[type] || config['Two Wheeler'];
 
         console.log('5. Settings selected:', settings);
-        console.log('6. Image path to load:', settings.img);
+        console.log('6. Image path:', settings.img);
         console.log('=== END DEBUG ===');
 
+        // Apply to page
         qrImg.src = settings.img;
         priceText.innerText = settings.price;
-        vehicleTypeText.innerText = type === 'Replacement' ? 'Replacement / Retain / Transfer' : type;
+        vehicleTypeText.innerText = (type === 'Replacement') 
+            ? 'Replacement / Retain / Transfer' 
+            : type;
 
-        // Check if image loads
+        // Image load check
         qrImg.onload = function () {
-            console.log('✅ QR Image loaded successfully:', settings.img);
+            console.log('✅ Image loaded successfully:', settings.img);
         };
 
         qrImg.onerror = function () {
-            console.error('❌ QR Image FAILED to load:', settings.img);
-            alert('Image file not found at: ' + settings.img + '\n\nPlease check if the file exists!');
+            console.error('❌ Image FAILED to load:', settings.img);
+            alert('QR image not found: ' + settings.img + '\n\nPlease check your images folder!');
         };
 
         function downloadQR() {
@@ -289,4 +295,3 @@
 </body>
 
 </html>
-

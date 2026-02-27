@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,35 +13,29 @@
             --border: #e5e7eb;
             --muted: #6b7280;
         }
-
         body {
             background: var(--soft);
             font-family: system-ui, sans-serif;
             padding: 40px 0;
         }
-
         .payment-container {
             max-width: 600px;
             margin: 0 auto;
         }
-
         .order-header {
             text-align: center;
             margin-bottom: 30px;
         }
-
         .order-header h2 {
             font-weight: 800;
             color: #111827;
         }
-
         .step-indicator {
             display: flex;
             justify-content: center;
             gap: 40px;
             margin-bottom: 30px;
         }
-
         .step-item {
             display: flex;
             align-items: center;
@@ -50,11 +43,9 @@
             font-weight: 700;
             color: var(--muted);
         }
-
         .step-item.active {
             color: var(--brand);
         }
-
         .step-num {
             width: 28px;
             height: 28px;
@@ -64,12 +55,10 @@
             place-items: center;
             font-size: 14px;
         }
-
         .active .step-num {
             background: var(--brand);
             color: white;
         }
-
         .card-payment {
             background: var(--card);
             border-radius: 24px;
@@ -77,16 +66,13 @@
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
         }
-
         .payment-header {
             padding: 30px;
             border-bottom: 1px solid var(--border);
         }
-
         .payment-body {
             padding: 30px;
         }
-
         .summary-box {
             background: #f8fafc;
             border: 1px solid var(--border);
@@ -94,25 +80,21 @@
             padding: 20px;
             margin-bottom: 25px;
         }
-
         .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
             font-weight: 600;
         }
-
         .summary-row:last-child {
             margin-bottom: 0;
             padding-top: 10px;
             border-top: 1px solid #e2e8f0;
         }
-
         .qr-section {
             text-align: center;
             margin-bottom: 25px;
         }
-
         .qr-frame {
             background: white;
             border: 2px solid var(--brand);
@@ -122,25 +104,21 @@
             margin-bottom: 15px;
             box-shadow: 0 8px 16px rgba(13, 110, 253, 0.1);
         }
-
         .qr-frame img {
             width: 220px;
             height: auto;
             border-radius: 10px;
         }
-
         .form-label {
             font-weight: 700;
             color: #374151;
             margin-bottom: 8px;
         }
-
         .form-control {
             border-radius: 12px;
             padding: 12px;
             border: 1px solid #d1d5db;
         }
-
         .btn-submit {
             border-radius: 12px;
             padding: 15px;
@@ -152,13 +130,11 @@
             color: white;
             margin-top: 20px;
         }
-
         .btn-back {
             font-weight: 700;
             color: var(--muted);
             text-decoration: none;
         }
-
         .btn-download {
             font-size: 14px;
             color: var(--brand);
@@ -169,13 +145,11 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container payment-container">
         <div class="order-header">
             <h2>Order Form</h2>
         </div>
-
         <div class="step-indicator">
             <div class="step-item">
                 <span class="step-num">1</span> Details
@@ -184,13 +158,11 @@
                 <span class="step-num">2</span> Payment
             </div>
         </div>
-
         <div class="card-payment">
             <div class="payment-header">
                 <h4 class="fw-bold mb-1">Payment</h4>
                 <p class="text-muted mb-0">Scan the QR to pay. After payment Booking will be confirmed.</p>
             </div>
-
             <div class="payment-body">
                 <div class="summary-box">
                     <div class="summary-row">
@@ -206,7 +178,6 @@
                         <span id="priceText">₹ 1099.00</span>
                     </div>
                 </div>
-
                 <div class="qr-section">
                     <p class="fw-bold mb-2">Payment QR Code</p>
                     <div class="qr-frame">
@@ -214,7 +185,6 @@
                     </div>
                     <a href="#" class="btn-download" onclick="downloadQR()">Save QR Code & Download</a>
                 </div>
-
                 <form action="thank-you.html">
                     <div class="mb-3">
                         <label class="form-label">Transaction ID*</label>
@@ -225,7 +195,6 @@
                         <input type="file" class="form-control" accept="image/*">
                         <small class="text-muted mt-1 d-block">Upload screenshot or receipt of your payment.</small>
                     </div>
-
                     <button type="submit" class="btn-submit shadow">Submit Order</button>
                     <div class="text-center mt-3">
                         <a href="enquiry.html" class="btn-back">Back</a>
@@ -234,23 +203,24 @@
             </div>
         </div>
     </div>
-
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type') || 'Two Wheeler';
+        const type = urlParams.get('type') || 'Plate For Two Wheeler';
 
         const qrImg = document.getElementById('qrImg');
         const priceText = document.getElementById('priceText');
         const vehicleTypeText = document.getElementById('vehicleTypeText');
 
-        // Updated config with ALL vehicle types
+        // Updated config with ALL new vehicle types (only this part changed)
         const config = {
-            'Two Wheeler':    { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Four Wheeler':   { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Three Wheeler':  { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
-            'Heavy Wheeler':  { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'New Wheeler':    { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Replacement':    { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
+            'Plate with Colour Sticker':   { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Plate For Two Wheeler':       { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Only Colour Sticker':         { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Plate For Electric Vehicle':  { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
+            'Plate For Tractor & Trailer': { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Plate For Four Wheeler':      { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Plate For Heavy Vehicle':     { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Replacement':                 { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
         };
 
         // DEBUGGING - Open F12 console to see what happens
@@ -260,7 +230,7 @@
         console.log('3. Config has this key?', type in config);
         console.log('4. All config keys:', Object.keys(config));
 
-        const settings = config[type] || config['Two Wheeler'];
+        const settings = config[type] || config['Plate For Two Wheeler'];
 
         console.log('5. Settings selected:', settings);
         console.log('6. Image path:', settings.img);
@@ -269,15 +239,14 @@
         // Apply to page
         qrImg.src = settings.img;
         priceText.innerText = settings.price;
-        vehicleTypeText.innerText = (type === 'Replacement') 
-            ? 'Replacement / Retain / Transfer' 
+        vehicleTypeText.innerText = (type === 'Replacement')
+            ? 'Replacement / Retain / Transfer'
             : type;
 
         // Image load check
         qrImg.onload = function () {
             console.log('✅ Image loaded successfully:', settings.img);
         };
-
         qrImg.onerror = function () {
             console.error('❌ Image FAILED to load:', settings.img);
             alert('QR image not found: ' + settings.img + '\n\nPlease check your images folder!');
@@ -293,5 +262,4 @@
         }
     </script>
 </body>
-
 </html>

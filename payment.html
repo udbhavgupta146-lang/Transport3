@@ -212,25 +212,28 @@
         const priceText = document.getElementById('priceText');
         const vehicleTypeText = document.getElementById('vehicleTypeText');
 
+        // FULL UPDATED CONFIG FOR YOUR LATEST OPTIONS
         const config = {
-            'Colour Sticker':       { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Two Wheeler':          { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Three Wheeler':        { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Electric Vehicle':     { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
-            'Tractor & Trailer':    { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Four Wheeler':         { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Heavy Vehicle':        { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Replacement':          { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
+            'Colour Sticker':     { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Two Wheeler':        { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Three Wheeler':      { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
+            'Electric Vehicle':   { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
+            'Tractor & Trailer':  { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Four Wheeler':       { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Heavy Vehicle':      { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Replacement':        { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
         };
 
         const settings = config[type] || config['Two Wheeler'];
 
+        // Apply to page
         qrImg.src = settings.img;
         priceText.innerText = settings.price;
         vehicleTypeText.innerText = (type === 'Replacement') 
             ? 'Replacement / Retain / Transfer' 
             : type;
 
+        // Image load check
         qrImg.onload = function () {
             console.log('✅ Image loaded successfully:', settings.img);
         };
@@ -250,4 +253,3 @@
     </script>
 </body>
 </html>
-

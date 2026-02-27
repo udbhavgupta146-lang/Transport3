@@ -191,13 +191,13 @@
                   <div class="col-md-6">
                     <label class="form-label">Vehicle Type <span class="text-danger">*</span></label>
                     <select class="form-select" name="v_type" id="vType" required>
-                      <option value="Plate with Colour Sticker">Plate with Colour Sticker</option>
-                      <option value="Plate For Two Wheeler" selected>Plate For Two Wheeler</option>
+                      <option value="Colour Sticker">Colour Sticker</option>
+                      <option value="Two Wheeler" selected>Two Wheeler</option>
                       <option value="Only Colour Sticker">Only Colour Sticker</option>
-                      <option value="Plate For Electric Vehicle">Plate For Electric Vehicle</option>
-                      <option value="Plate For Tractor & Trailer">Plate For Tractor & Trailer</option>
-                      <option value="Plate For Four Wheeler">Plate For Four Wheeler</option>
-                      <option value="Plate For Heavy Vehicle">Plate For Heavy Vehicle</option>
+                      <option value="Electric Vehicle">Electric Vehicle</option>
+                      <option value="Tractor & Trailer">Tractor & Trailer</option>
+                      <option value="Four Wheeler">Four Wheeler</option>
+                      <option value="Heavy Vehicle">Heavy Vehicle</option>
                     </select>
                   </div>
 
@@ -268,10 +268,6 @@
       if (appType === 'Replacement') {
         finalType = 'Replacement';
       }
-
-      console.log('Vehicle Type selected:', vehicleType);
-      console.log('Application Type selected:', appType);
-      console.log('Final type sent:', finalType);
 
       const ts = new Date().getTime();
       window.location.href = 'payment.html?type=' + encodeURIComponent(finalType) + '&_=' + ts;

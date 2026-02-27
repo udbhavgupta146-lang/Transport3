@@ -17,47 +17,39 @@
       --border: #e5e7eb;
       --shadow: 0 10px 25px rgba(17, 24, 39, 0.06);
     }
-
     body {
       background: var(--soft);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-
     .nav-glass {
       background: rgba(255, 255, 255, 0.82) !important;
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(229, 231, 235, 0.7);
     }
-
     .nlogo {
       width: 140px;
       height: auto;
     }
-
     .card-pro {
       border: 1px solid var(--border);
       border-radius: 18px;
       box-shadow: var(--shadow);
       background: var(--card);
     }
-
     .form-label {
       font-weight: 800;
     }
-
     .form-control,
     .form-select {
       border-radius: 14px;
       border: 1px solid #e5e7eb;
       padding: .75rem .9rem;
     }
-
     .form-control:focus,
     .form-select:focus {
       border-color: rgba(13, 110, 253, .55);
       box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .12);
     }
-
     .section-title {
       font-weight: 900;
       letter-spacing: .10em;
@@ -65,20 +57,17 @@
       color: var(--brand);
       font-size: .85rem;
     }
-
     .btn-next {
       border-radius: 14px;
       padding: 12px 18px;
       font-weight: 900;
     }
-
     .footer {
       margin-top: 32px;
       padding: 18px 0;
       background: #0b1220;
       color: rgba(255, 255, 255, .80);
     }
-
     .brand-text {
       font-weight: 900;
       letter-spacing: .06em;
@@ -135,8 +124,7 @@
 
                   <div class="col-md-6">
                     <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="mobile" maxlength="10" required
-                      placeholder="10 digit mobile">
+                    <input type="text" class="form-control" name="mobile" maxlength="10" required placeholder="10 digit mobile">
                   </div>
 
                   <div class="col-md-6">
@@ -193,7 +181,7 @@
                     <select class="form-select" name="v_type" id="vType" required>
                       <option value="Colour Sticker">Colour Sticker</option>
                       <option value="Two Wheeler" selected>Two Wheeler</option>
-                      <option value="Only Colour Sticker">Three Wheeler</option>
+                      <option value="Three Wheeler">Three Wheeler</option>
                       <option value="Electric Vehicle">Electric Vehicle</option>
                       <option value="Tractor & Trailer">Tractor & Trailer</option>
                       <option value="Four Wheeler">Four Wheeler</option>
@@ -203,33 +191,28 @@
 
                   <div class="col-md-6">
                     <label class="form-label">Vehicle Reg. No <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="vehicle_reg" maxlength="12" required
-                      placeholder="e.g. BR01AB1234">
+                    <input type="text" class="form-control" name="vehicle_reg" maxlength="12" required placeholder="e.g. BR01AB1234">
                   </div>
 
                   <div class="col-md-6">
                     <label class="form-label">Chassis No <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="chassis_no" maxlength="5" required
-                      placeholder="Last 5 digits">
+                    <input type="text" class="form-control" name="chassis_no" maxlength="5" required placeholder="Last 5 digits">
                   </div>
 
                   <div class="col-md-6">
                     <label class="form-label">Engine No <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="engine_no" maxlength="5" required
-                      placeholder="Last 5 digits">
+                    <input type="text" class="form-control" name="engine_no" maxlength="5" required placeholder="Last 5 digits">
                   </div>
 
                   <!-- Address -->
                   <div class="col-12">
                     <label class="form-label">Address <span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="address" rows="2" required
-                      placeholder="House no, street, area..."></textarea>
+                    <textarea class="form-control" name="address" rows="2" required placeholder="House no, street, area..."></textarea>
                   </div>
 
                   <div class="col-md-6">
                     <label class="form-label">Pin Code <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="pincode" maxlength="6" required
-                      placeholder="6 digit pincode">
+                    <input type="text" class="form-control" name="pincode" maxlength="6" required placeholder="6 digit pincode">
                   </div>
 
                   <!-- Submit -->
@@ -259,12 +242,10 @@
   <script>
     document.getElementById('hsrpForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
       const vehicleType = document.getElementById('vType').value;
-      const appType     = document.getElementById('appType').value;
+      const appType = document.getElementById('appType').value;
 
       let finalType = vehicleType;
-
       if (appType === 'Replacement') {
         finalType = 'Replacement';
       }
@@ -273,6 +254,5 @@
       window.location.href = 'payment.html?type=' + encodeURIComponent(finalType) + '&_=' + ts;
     });
   </script>
-
 </body>
 </html>

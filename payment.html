@@ -203,47 +203,34 @@
             </div>
         </div>
     </div>
+
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get('type') || 'Plate For Two Wheeler';
+        const type = urlParams.get('type') || 'Two Wheeler';
 
         const qrImg = document.getElementById('qrImg');
         const priceText = document.getElementById('priceText');
         const vehicleTypeText = document.getElementById('vehicleTypeText');
 
-        // Updated config with ALL new vehicle types (only this part changed)
         const config = {
-            'Plate with Colour Sticker':   { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Plate For Two Wheeler':       { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Only Colour Sticker':         { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
-            'Plate For Electric Vehicle':  { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
-            'Plate For Tractor & Trailer': { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Plate For Four Wheeler':      { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Plate For Heavy Vehicle':     { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
-            'Replacement':                 { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
+            'Colour Sticker':       { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Two Wheeler':          { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Only Colour Sticker':  { img: 'images/1099.jpg.jpeg', price: '₹ 1099.00' },
+            'Electric Vehicle':     { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' },
+            'Tractor & Trailer':    { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Four Wheeler':         { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Heavy Vehicle':        { img: 'images/1499.jpg.jpeg', price: '₹ 1499.00' },
+            'Replacement':          { img: 'images/1299.jpg.jpeg', price: '₹ 1299.00' }
         };
 
-        // DEBUGGING - Open F12 console to see what happens
-        console.log('=== PAYMENT PAGE DEBUG ===');
-        console.log('1. Full URL:', window.location.href);
-        console.log('2. Type received:', type);
-        console.log('3. Config has this key?', type in config);
-        console.log('4. All config keys:', Object.keys(config));
+        const settings = config[type] || config['Two Wheeler'];
 
-        const settings = config[type] || config['Plate For Two Wheeler'];
-
-        console.log('5. Settings selected:', settings);
-        console.log('6. Image path:', settings.img);
-        console.log('=== END DEBUG ===');
-
-        // Apply to page
         qrImg.src = settings.img;
         priceText.innerText = settings.price;
-        vehicleTypeText.innerText = (type === 'Replacement')
-            ? 'Replacement / Retain / Transfer'
+        vehicleTypeText.innerText = (type === 'Replacement') 
+            ? 'Replacement / Retain / Transfer' 
             : type;
 
-        // Image load check
         qrImg.onload = function () {
             console.log('✅ Image loaded successfully:', settings.img);
         };
